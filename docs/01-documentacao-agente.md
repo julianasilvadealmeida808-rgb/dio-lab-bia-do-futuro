@@ -37,11 +37,10 @@ Acessível e claro, com um nível de formalidade moderado. O agente utiliza uma 
 
 ```mermaid
 flowchart TD
-    A[Usuário] -->|Mensagem| B[Interface]
-    B --> C[Processamento da Pergunta]
+    A[Usuário] -->|Pergunta ou situação financeira| B[Streamlit]
+    B --> C[Ollama local]
     C --> D[Análise de Opções]
-    D --> C
-    C --> E[Validação]
+    D --> E[Validação]
     E --> F[Resposta com Orientação]
 ```
 
@@ -49,10 +48,10 @@ flowchart TD
 
 | Componente | Descrição |
 |------------|-----------|
-| Interface | [ex: Chatbot em Streamlit] |
-| LLM | [ex: GPT-4 via API] |
-| Base de Conhecimento | [ex: JSON/CSV com dados do cliente] |
-| Validação | [ex: Checagem de alucinações] |
+| Interface | [Streamlit](https://streamlit.io/) |
+| LLM | Ollama (local) |
+| Base de Conhecimento | JSON/CSV mockados na pasta `data` |
+| Validação | Checagem de alucinações |
 
 ---
 
@@ -60,12 +59,15 @@ flowchart TD
 
 ### Estratégias Adotadas
 
-- [ ] [ex: Agente só responde com base nos dados fornecidos]
-- [ ] [ex: Respostas incluem fonte da informação]
-- [ ] [ex: Quando não sabe, admite e redireciona]
-- [ ] [ex: Não faz recomendações de investimento sem perfil do cliente]
-
+- [x] O agente responde com base apenas nas informações fornecidas pelo usuário
+- [x] Explica os possíveis impactos das decisões sem afirmar resultados absolutos
+- [x] Quando não possui dados suficientes, informa a limitação e sugere análise geral
+- [x] Não realiza recomendações de investimento ou decisões financeiras específicas
+      
 ### Limitações Declaradas
-> O que o agente NÃO faz?
 
-[Liste aqui as limitações explícitas do agente]
+- O agente não substitui um profissional da área financeira
+- Não realiza investimentos nem toma decisões pelo usuário
+- Não garante resultados ou previsões financeiras
+- Não possui acesso a dados bancários reais ou informações externas
+- Suas respostas são baseadas apenas nas informações fornecidas pelo usuário
