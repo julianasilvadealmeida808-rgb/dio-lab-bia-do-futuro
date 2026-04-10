@@ -31,6 +31,11 @@ Exemplo:
 import json
 import pandas as pd
 
+# Nota opcional:
+# Para interface (Gradio) ou modelos (Ollama), importe:
+# import gradio as gr
+# import ollama
+
 # Carregando dados CSV
 gastos = pd.read_csv('data/gastos_usuario.csv')
 
@@ -41,7 +46,7 @@ with open('data/perfil_usuario.json', 'r') as f:
 
 ### Como os dados são usados no prompt?
 
-Os dados são utilizados como contexto estruturado para orientar a geração de respostas do agente. Informações como perfil do usuário, histórico de gastos e cenários de decisões financeiras são consideradas durante o processamento da solicitação.
+Os dados servem como contexto estruturado, incluindo perfil, histórico de gastos e cenários financeiros, para orientar a geração de respostas.
 
 Exemplo de dados utilizados:
 
