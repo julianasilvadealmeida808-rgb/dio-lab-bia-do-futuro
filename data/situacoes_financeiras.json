@@ -38,5 +38,36 @@
     "rentabilidade": "Variável",
     "aporte_minimo": 100.00,
     "indicado_para": "Perfil arrojado com foco no longo prazo"
+  },
+  {
+    "nome": "Gastar R$400 em compras no shopping",
+    "categoria": "lazer",
+    "impacto": "reduz saldo disponível",
+    "indicado_para": "quem já pagou contas fixas"
+  },
+  {
+    "nome": "Pagar R$800 em despesas da semana",
+    "categoria": "essencial",
+    "impacto": "prioritário",
+    "indicado_para": "todos os perfis"
+  },
+  {
+    "nome": "Parcelar celular novo em 12x",
+    "categoria": "consumo",
+    "impacto": "gera dívida longa",
+    "indicado_para": "quem aceita risco e tem sobra mensal"
+  },
+  {
+    "nome": "Guardar R$200 como reserva",
+    "categoria": "planejamento",
+    "impacto": "aumenta segurança",
+    "indicado_para": "quem tem saldo positivo"
+  },
+  {
+    "nome": "Assinar academia por R$99/mês",
+    "categoria": "saude",
+    "impacto": "compromisso recorrente",
+    "indicado_para": "quem tem renda estável"
   }
+   
 ]
