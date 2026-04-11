@@ -30,18 +30,29 @@ Exemplo:
 ```python
 import json
 import pandas as pd
-
-# Nota opcional:
-# Para interface (Gradio) ou modelos (Ollama), importe:
-# import gradio as gr
-# import ollama
+import gradio as gr
+import ollama
 
 # Carregando dados CSV
 gastos = pd.read_csv('data/gastos_usuario.csv')
+decisoes = pd.read_csv('data/decisoes_financeiras.csv')
 
 # Carregando dados JSON
 with open('data/perfil_usuario.json', 'r') as f:
     perfil = json.load(f)
+
+with open('data/situacoes_financeiras.json', 'r') as f:
+    situacoes = json.load(f)
+
+# Exemplo de uso:
+# - gradio pode criar uma interface simples para interação
+# - ollama pode rodar modelos locais usando esses dados como contexto
+
+# Agora o agente tem acesso a:
+# - perfil: informações básicas do usuário
+# - gastos: entradas e saídas mensais
+# - situacoes: dilemas financeiros cotidianos
+# - decisoes: histórico de decisões e orientações
 ```
 
 ### Como os dados são usados no prompt?
@@ -49,55 +60,56 @@ with open('data/perfil_usuario.json', 'r') as f:
 Os dados servem como contexto estruturado, incluindo perfil, histórico de gastos e cenários financeiros, para orientar a geração de respostas.
 
 Exemplo de dados utilizados:
-
+```
 Perfil do usuário:
-- Nome: João Silva
-- Renda mensal: 5000
-- Objetivo: Construir reserva de emergência
-
+• 	Nome: Helena Lima
+• 	Renda mensal: 4500
+• 	Saldo atual: 1500
+• 	Aceita risco: sim
+• 	Objetivo: Investir parte da renda em aplicações de baixo risco e manter equilíbrio entre consumo e reserva
 Gastos mensais:
-- Moradia: 1200
-- Alimentação: 570
-- Transporte: 295
-- Saúde: 188
-- Lazer: 55,90
-
+• 	Moradia: 1200
+• 	Alimentação: 570
+• 	Transporte: 295
+• 	Saúde: 188
+• 	Lazer: 55,90
 Situação analisada:
-- Pergunta: "Devo parcelar uma compra?"
-- Contexto: usuário com gastos recorrentes e necessidade de manter controle financeiro
+• 	Pergunta: "Devo parcelar a compra de um celular em 12 vezes?"
+• 	Contexto: Helena possui gastos recorrentes, saldo limitado e objetivo de investir parte da renda. O parcelamento pode comprometer sua capacidade de manter reservas e investir.
 
-Com base nesses dados, o agente avalia o impacto da decisão e fornece orientações adequadas, considerando o equilíbrio financeiro do usuário.
-
+Decisão simulada:
+• 	Orientação: Avaliar sobra mensal após despesas essenciais e verificar se o parcelamento não compromete a meta de investimento.
+• 	Resultado: Orientado — recomendação de evitar parcelamento longo e priorizar liquidez para manter equilíbrio financeiro.
+Com base nesses dados, o agente avalia o impacto da decisão e fornece orientações adequadas, considerando o perfil de risco de Helena e seus objetivos.
 Os dados são incluídos como contexto no prompt, permitindo que o agente gere respostas mais consistentes e alinhadas às informações disponíveis.
 
 ## Exemplo de Contexto Montado
 
 > Exemplo de como os dados são organizados e apresentados ao agente para auxiliar na geração de respostas.
-```
-    Dados do Usuário:
-    - Nome: João Silva
-    - Idade: 32
-    - Profissão: Analista de Sistemas
-    - Renda mensal: R$ 5.000
-    - Objetivo: Construir reserva de emergência
-    - Reserva atual: R$ 10.000
 
-    Resumo financeiro:
-    - Moradia: R$ 1.380
-    - Alimentação: R$ 570
-    - Transporte: R$ 295
-    - Saúde: R$ 188
-    - Lazer: R$ 55,90
+Dados do Usuário:
+- Nome: Helena Lima
+- Idade: 28 anos
+- Profissão: Designer Gráfico
+- Renda mensal: R$ 4.500
+- Saldo atual: R$ 1.500
+- Aceita risco: Sim
+- Objetivo: Investir parte da renda em aplicações de baixo risco e manter equilíbrio entre consumo e reserva
 
-    Situação atual:
-    - Usuário deseja saber se deve realizar uma nova compra ou parcelamento
-    - Gastos já comprometem parte significativa da renda mensal
+Resumo Financeiro:
+- Moradia: R$ 1.200
+- Alimentação: R$ 570
+- Transporte: R$ 295
+- Saúde: R$ 188
+- Lazer: R$ 55,90
 
-    Referência de decisões anteriores:
-    - Avaliar liquidez antes de investir
-    - Manter controle de gastos mensais
-    - Priorizar estabilidade financeira
 
-    Instrução para o agente:
-    Com base nos dados acima, analise a situação e forneça uma orientação financeira clara e responsável, considerando o impacto da decisão no orçamento do usuário.
+Situação atual:
+- Helena avalia se deve parcelar a compra de um celular em 12 vezes. Como seus gastos já comprometem parte significativa da renda, o parcelamento pode reduzir a capacidade de investir e manter reservas.
+
+Referência de decisões anteriores:
+- Ela costuma avaliar sobra mensal antes de assumir novas parcelas, manter liquidez para garantir reservas e priorizar equilíbrio entre consumo e investimento.
+
+Instrução para o agente:
+- Com base nesse contexto, forneça uma orientação financeira clara e responsável, considerando o impacto da decisão no orçamento e nos objetivos de investimento da usuária.
 ```
